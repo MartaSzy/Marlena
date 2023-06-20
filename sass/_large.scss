@@ -1,0 +1,38 @@
+@media(min-width: 992px) {
+   
+    .nav {
+       position: sticky;
+	   height: 6em;
+	   line-height: 6em;
+	   text-align: center;
+	   z-index: 10;
+       background-color: $white;
+
+        &-desktop {
+			position: sticky;
+			top: 0;
+            display: block;
+        }
+        
+        &__link {
+			padding: 0 1.5em;
+        }
+    }
+
+    .hamburger {
+        display: none;
+    }
+
+	.header {
+			background-image: url('../img/headingBig.jpg');
+
+		&__name {
+			font-size: 5rem;
+		}
+
+		&__text {
+			font-size: 2.2rem;
+		}
+	}
+
+}

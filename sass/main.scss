@@ -1,0 +1,679 @@
+@use './colors' as *;
+// @import './components';
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.6rem;
+}
+
+.wrapper {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 1200px;
+}
+
+.hamburger {
+	position: absolute;
+	top: 3.5em;
+	right: 1.5em;
+	transform: translateY(-50%);
+	z-index: 500;
+
+	&-inner,
+	&-inner::before,
+	&-inner::after {
+		background-color: $light-white;
+		z-index: 500;
+	}
+}
+
+.nav {
+	&-mobile {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		background-color: $light-white;
+		transform: translateX(-102%);
+		transition: transform 0.3s;
+		z-index: 100;
+
+		&--active {
+			transform: translateX(0);
+		}
+	}
+
+	&-desktop {
+		display: none;
+	}
+
+	&__link {
+		position: relative;
+		display: inline-block;
+		padding: 1em;
+		font-size: 2.3rem;
+		color: $blue;
+		text-transform: uppercase;
+		text-decoration: none;
+		transition: color 0.3s;
+
+		&:hover {
+			color: $light-blue;
+		}
+		&,
+		&::after,
+		&::before {
+			transition: transform 0.3s;
+		}
+
+		&::before,
+		&::after {
+			content: ' ';
+			position: absolute;
+			width: 0;
+			height: 0;
+			opacity: 0;
+		}
+
+		&::before {
+			top: -2px;
+			left: -8px;
+			border-top: 3px solid $light-blue;
+			border-left: 3px solid $light-blue;
+		}
+
+		&::after {
+			bottom: -2px;
+			right: -8px;
+			border-bottom: 3px solid $light-blue;
+			border-right: 3px solid $light-blue;
+		}
+
+		&:hover::before,
+		&:hover::after {
+			width: 50px;
+			height: 50%;
+			opacity: 1;
+			transition: 0.3s;
+		}
+	}
+}
+
+.heading {
+	position: relative;
+	display: flex;
+	top: 0;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 2em;
+	height: 65vh;
+	text-align: center;
+	color: $white;
+	background-image: url('../img/headingSmall.jpg');
+	background-position: center;
+	background-size: cover;
+	background-attachment: scroll;
+
+	&__bg {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(3, 27, 40, 0.6);
+	}
+
+	&__box {
+		position: absolute;
+	}
+
+	&__name {
+		font-family: 'Courgette', cursive;
+		margin-bottom: 0.5em;
+		font-size: 3.8rem;
+		font-weight: bold;
+	}
+
+	&__text {
+		font-size: 1.4rem;
+	}
+
+	&__btn {
+		position: absolute;
+		bottom: 3.5em;
+		margin-top: 2em;
+		padding: 0.8em 1.6em;
+		font-size: 1.4rem;
+		background: $pink;
+		border: none;
+		border-radius: 10px;
+		color: $white;
+		text-decoration: none;
+		text-transform: uppercase;
+		cursor: pointer;
+		overflow: hidden;
+		transition: background-color 0.3s;
+
+		&:hover {
+			background-color: $dark-pink;
+		}
+	}
+}
+
+.section-padding {
+	padding: 4em 1.5em;
+}
+
+.section-title {
+	position: relative;
+	margin-bottom: 1.5em;
+	font-size: 2.5rem;
+	text-align: center;
+	text-transform: uppercase;
+	color: $blue;
+	font-weight: normal;
+}
+
+//zachęta do różnych miejscówek//
+
+.places {
+	&__boxes {
+		display: flex;
+		justify-content: center;
+		// width: 1000px;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+
+	&__box {
+		// position: relative;
+		margin: 1em 0;
+		// height: 450px;
+
+		&-img {
+			// width: 100%;
+			margin: 1em;
+			height: 10em;
+			width: 15em;
+			padding: 2em;
+			border-radius: 5px;
+			background-size: cover;
+			background-position: center;
+			box-shadow: 5px 5px 5px $powder-pink;
+			transition: transform 0.3s;
+
+			&:hover {
+				transform: scale(1.1);
+			}
+
+			// &:nth-child(3) {
+			// 	display: none;
+			// }
+
+			&--first {
+				background-image: url('../img/plaża-dominikana.jpg');
+			}
+			&--second {
+				background-image: url('../img/miasto.jpg');
+			}
+			&--third {
+				background-image: url('../img/hiking.jpg');
+			}
+			&--fourth {
+				background-image: url('../img/lake.jpg');
+			}
+		}
+	}
+}
+
+.arrow {
+	position: fixed;
+	bottom: 2em;
+	right: 1.5em;
+	font-size: 1.5rem;
+	font-weight: bold;
+	padding: 1em;
+	z-index: 90;
+	border: none;
+	border-radius: 55px;
+	overflow: hidden;
+	background-color: rgba(46, 46, 46, 0.18);
+	color: $dark-pink;
+}
+
+//oferta//
+.offer {
+	background-color: $light-blue;
+
+	.section-title {
+		color: $white;
+	}
+
+	&__space {
+		margin: 1em 0;
+		box-shadow: 5px 5px 5px rgba(46, 46, 46, 0.18);
+		background-color: $white;
+		overflow: hidden;
+
+		&-img {
+			width: 100%;
+			transition: transform 0.3s;
+
+			&:hover {
+				transform: scale(1.1);
+			}
+		}
+
+		&-text {
+			padding: 2em;
+			font-size: 1.4rem;
+			background-color: $white;
+			z-index: 11;
+		}
+
+		&__text {
+			margin-bottom: 0.5em;
+			font-size: 1.3rem;
+			line-height: 1.5em;
+			color: $black;
+		}
+
+		&-btn {
+			margin-top: 1.5em;
+			padding: 0.8em;
+			width: 100%;
+			color: $white;
+			text-transform: uppercase;
+			background-color: $pink;
+			border: none;
+			border-radius: 10px;
+			cursor: pointer;
+			font-size: 1.6rem;
+			transition: background-color 0.3s;
+
+			&:hover {
+				background-color: $dark-pink;
+			}
+		}
+	}
+}
+
+//formularz//
+.registration {
+	position: reltive;
+	overflow: hidden;
+	background-color: $light-white;
+	&__form,
+	&__form-top {
+		display: flex;
+		flex-direction: column;
+		// background-color: $light-white;
+
+		&-text {
+			margin-bottom: 1.5em;
+			font-size: 1.4rem;
+		}
+
+		&-top {
+			flex-direction: row;
+			// justify-content: space-between;
+			margin-bottom: 1.5em;
+			padding: 0.5em 1em;
+		}
+	}
+
+	&-info {
+		background-color: $light-white;
+	}
+	&__form-label {
+		margin-bottom: 0.5em;
+		text-transform: uppercase;
+	}
+
+	&__form-input,
+	&__form-textarea {
+		margin-bottom: 1.5em;
+		padding: 0.5em 1em;
+		border: 3px solid $yellow;
+		outline: none;
+		border-radius: 8px;
+		font-size: 1.6rem;
+
+		&:focus {
+			border: 3px solid $powder-pink;
+		}
+	}
+
+	&__form-textarea {
+		max-width: 100%;
+		min-width: 100%;
+		width: 100%;
+		min-height: 150px;
+	}
+}
+
+//o nas//
+
+.aboutus {
+	background-color: $blue;
+
+	.section-title {
+		color: $white;
+	}
+
+	&__box {
+		display: flex;
+		flex-direction: column;
+		margin: 2em 0;
+		background-color: $light-white;
+		border-radius: 8px;
+		overflow: hidden;
+
+		&-img {
+			margin: 2em;
+		}
+
+		&-text {
+			padding: 1em;
+		}
+	}
+
+	&__img {
+		width: 100%;
+		margin-bottom: 0;
+		border-radius: 8px;
+	}
+
+	&__title {
+		margin: 0.5em 0;
+		color: $blue;
+		// text-decoration: underline;
+
+		span {
+			font-weight: normal;
+			color: $black;
+		}
+	}
+
+	&__text {
+		font-size: 1.4rem;
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+		margin-right: 1.5em;
+	}
+
+	.insta-link {
+
+		.fa-brands {
+			padding: 0.5em;
+			font-size: 4.5rem;
+			font-weight: bold;
+			color: $pink;
+			transform: color 0.3s;
+			// justify-content: flex-end;
+			// align-items: flex-end;
+			
+			&:hover {
+				color: $dark-pink;
+			}
+		}
+	}
+
+}
+
+.footer {
+	padding: 3em 1em;
+	border-top: 1px solid $blue;
+	text-align: center;
+}
+
+// 	// &__insta-link {
+// 	// 	padding: 0 1.5em;
+// 	// 	font-size: 2.2rem;
+// 	// 	color: $pink;
+// 	// 	cursor: pointer;
+// 	// 	text-decoration: none;
+
+// 	// 	&:hover {
+// 	// 		color: $dark-pink;
+// 	// 	}
+// 	// }
+// }
+//=====================
+//MEDIA//
+
+@media (min-width: 576px) {
+	.aboutus {
+		&__box {
+			flex-direction: row;
+			justify-content: space-between;
+
+			&-text {
+				width: 65%;
+
+				// &--right {
+				// 	text-align: right;
+				// }
+			}
+
+			&-img {
+				width: 30%;
+				height: auto; //!!!!!!!!!wywalic jakby co
+
+				&--right {
+					order: 1;
+				}
+			}
+		}
+
+		&__img {
+			margin-bottom: 0;
+			max-height: 500px;
+		}
+	}
+
+	.offer {
+		&__space {
+			display: flex;
+			margin-bottom: 1em;
+			width: 100%;
+
+			&-img {
+				width: 45%;
+				height: auto;
+			}
+
+			&-text {
+				display: flex;
+				width: 100%;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+
+			&-btn {
+				padding: 1em;
+			}
+		}
+	}
+}
+@media (min-width: 768px) {
+	.heading {
+		&__name {
+			font-size: 4.6rem;
+		}
+		&__text {
+			font-size: 1.8rem;
+		}
+		&__btn {
+			font-size: 1.6rem;
+		}
+	}
+
+	.section-title {
+		font-size: 2.6rem;
+	}
+
+	.aboutus {
+		&__title {
+			font-size: 2.2rem;
+		}
+		&__text {
+			font-size: 1.8rem;
+		}
+	}
+}
+@media (min-width: 992px) {
+	section {
+		scroll-margin-top: 6em;
+	}
+
+	.arrow {
+		display: none;
+	}
+
+	.nav {
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 50;
+		background-color: $white;
+		border-bottom: 1px solid $blue;
+
+		&-desktop {
+			display: flex;
+			height: 6em;
+		}
+
+		&__link {
+			flex-direction: row;
+			position: static;
+			height: 6em;
+			width: auto;
+			font-size: 2.6rem;
+			align-items: center;
+			text-align: center;
+			justify-content: space-around;
+			background: none;
+			overflow: hidden;
+
+			&::before,
+			&::after {
+				display: none;
+			}
+
+			&-logo {
+				margin-top: 0.3em;
+				margin-right: 0.5em;
+				margin-left: 3em;
+				font-size: 3em;
+				color: $blue;
+				// align-items: flex-end;
+				// justify-content: flex-end;
+				transition: color 0.3s;
+
+				&:hover {
+					color: $light-blue;
+				}
+			}
+		}
+	}
+
+	.hamburger {
+		display: none;
+	}
+
+	.heading {
+		// top:6em;
+		background-image: url('../img/headingBig.jpg');
+
+		&__name {
+			font-size: 6rem;
+		}
+
+		&__text {
+			font-size: 2.2rem;
+		}
+
+		&__btn {
+			font-size: 1.8rem;
+		}
+	}
+	.section-title {
+		font-size: 3.2rem;
+	}
+
+	.offer {
+		// &-img{
+		// 	width: 100%;
+		// }
+		&__text {
+			font-size: 2rem;
+			line-height: 1.5em;
+		}
+
+		&-img {
+			width: 100%;
+		}
+
+		&__btn {
+			font-size: 1.8rem;
+		}
+	}
+
+	.aboutus {
+		&__box {
+			margin: 3em 0;
+
+			&-img {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+
+			&-text {
+				display: flex;
+				flex-direction: column;
+				margin-bottom: 1.5em;
+			}
+		}
+
+		&__title {
+			font-size: 2.8rem;
+		}
+
+		&__text {
+			font-size: 1.8rem;
+			line-height: 1.5em;
+		}
+	}
+
+	.offer {
+		.space {
+			&-img {
+				object-fit: cover;
+				height: 300px;
+			}
+
+			&-text {
+				font-size: 1.8rem;
+			}
+		}
+	}
+}
